@@ -87,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ChatScreen(),
+                            builder: (context) =>  ChatScreen(),
                           ),
                         );
                       } on FirebaseAuthException catch (ex) {
