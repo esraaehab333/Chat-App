@@ -8,3 +8,4 @@ Color TextColor = const Color.fromRGBO(28, 45, 53, 1);
 Color WhiteColor = const Color.fromRGBO(255, 255, 255, 1);
 Color FoucseBorderSideColor = const Color.fromRGBO(91, 224, 167, 1);
 const KeyMessageCollection = "messages";
+const KMessage = "message";

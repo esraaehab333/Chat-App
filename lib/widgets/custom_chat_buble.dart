@@ -1,18 +1,20 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/models/message.dart';
 import 'package:flutter/material.dart';
 
 class CustomChatBuble extends StatelessWidget {
-  const CustomChatBuble({
-    super.key,
+ const CustomChatBuble({
+    super.key,required this.message
   });
-
+  final Message message;
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        padding: const EdgeInsets.only(left: 16,top: 16,bottom: 16,right: 16),
-        margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+        padding:
+            const EdgeInsets.only(left: 16, top: 16, bottom: 16, right: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(25),
@@ -21,9 +23,9 @@ class CustomChatBuble extends StatelessWidget {
           ),
           color: EnableBorderSideColor,
         ),
-        child: const Text(
-          "hello",
-          style: TextStyle(
+        child: Text(
+          message.message,
+          style: const TextStyle(
             color: Colors.black,
           ),
         ),
