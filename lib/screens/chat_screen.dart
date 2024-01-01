@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatelessWidget {
-  ChatScreen({super.key});
-
+  ChatScreen({super.key, required this.email});
+  final String email;
   CollectionReference messages =
       FirebaseFirestore.instance.collection(KeyMessageCollection);
   TextEditingController controller = TextEditingController();
@@ -14,7 +14,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: messages.orderBy("createdAt").snapshots(),
+      stream: messages.orderBy("createdAt", descending: true).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Message> messagesList = [];
@@ -34,37 +34,45 @@ class ChatScreen extends StatelessWidget {
                 Expanded(
                   child: ListView.builder(
                       controller: _controller,
+                      reverse: true,
                       itemCount: messagesList.length,
                       itemBuilder: (context, index) {
-                        return CustomChatBuble(
-                          message: messagesList[index],
-                        );
+                        return messagesList[index].id == email
+                            ? CustomChatBuble(message: messagesList[index])
+                            : CustomChatBubleForFriend(
+                                message: messagesList[index]);
                       }),
                 ),
-                TextField(
-                  controller: controller,
-                  onSubmitted: (value) {
-                    messages
-                        .add({"message": value, "createdAt": DateTime.now()});
-                    controller.clear();
-                    _controller.animateTo(
-                      _controller.position.maxScrollExtent,
-                      duration: Duration(seconds: 2),
-                      curve: Curves.fastOutSlowIn,
-                    );
-                  },
-                  decoration: InputDecoration(
-                    hintText: " Message",
-                    suffixIcon: Icon(
-                      Icons.send,
-                      color: EnableBorderSideColor,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: FoucseBorderSideColor),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: controller,
+                    onSubmitted: (value) {
+                      messages.add({
+                        "message": value,
+                        "createdAt": DateTime.now(),
+                        "id": email
+                      });
+                      controller.clear();
+                      _controller.animateTo(
+                        _controller.position.maxScrollExtent,
+                        duration: Duration(microseconds: 500),
+                        curve: Curves.easeIn,
+                      );
+                    },
+                    decoration: InputDecoration(
+                      hintText: " Message",
+                      suffixIcon: Icon(
+                        Icons.send,
+                        color: EnableBorderSideColor,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: BorderSide(color: FoucseBorderSideColor),
+                      ),
                     ),
                   ),
                 ),

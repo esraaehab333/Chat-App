@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:math';
+
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/register_user.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
@@ -87,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  ChatScreen(),
+                            builder: (context) =>  ChatScreen(email: email!),
                           ),
                         );
                       } on FirebaseAuthException catch (ex) {

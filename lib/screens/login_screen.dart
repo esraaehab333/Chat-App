@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  ChatScreen(),
+                            builder: (context) =>  ChatScreen(email: email!),
                           ),
                         );
                       } on FirebaseAuthException catch (e) {
