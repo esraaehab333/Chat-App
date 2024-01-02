@@ -2,7 +2,7 @@
 
 // ignore_for_file: must_be_immutable
 
-import 'package:chat_app/constants.dart';
+import 'package:chat_app/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomFormTextFiled extends StatelessWidget {
@@ -22,13 +22,13 @@ class CustomFormTextFiled extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(15),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: FoucseBorderSideColor, width: 2.0),
+          borderSide: BorderSide(color:MyPurple2, width: 2.0),
           borderRadius: const BorderRadius.all(
             Radius.circular(25),
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: EnableBorderSideColor, width: 1.0),
+          borderSide: BorderSide(color: MyPurple3, width: 1.0),
           borderRadius: const BorderRadius.all(
             Radius.circular(25),
           ),

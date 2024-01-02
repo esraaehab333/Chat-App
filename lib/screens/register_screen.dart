@@ -1,8 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:math';
 
-import 'package:chat_app/constants.dart';
+import 'package:chat_app/constants/color.dart';
 import 'package:chat_app/helper/register_user.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
@@ -33,7 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        backgroundColor: WhiteColor,
+        backgroundColor: MyGray,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Form(
@@ -44,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 75,
                 ),
                 const Image(
-                  image: AssetImage("assets/images/chatt.jpg"),
+                  image: AssetImage("assets/images/Cat astronaut-pana (1).png"),
                 ),
                 const SizedBox(
                   height: 10,
@@ -89,12 +88,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  ChatScreen(email: email!),
+                            builder: (context) => ChatScreen(email: email!),
                           ),
                         );
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == "weak-password") {
-                          showSnackBar(context, "weak password");
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("Weak Password"),
+                              content: const Text("weak password , please enter stronger password"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(ctx),
+                                  child: Text("Okey" , style: TextStyle(color: MyPurple3),),
+
+                                ),
+                              ],
+                              backgroundColor: MyPurple1,
+                              
+                            ),
+                          );
                         } else if (ex.code == "email-already-in-use") {
                           showSnackBar(context, "email already exist");
                         }
@@ -120,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       child: Text(
                         "login",
-                        style: TextStyle(color: EnableBorderSideColor),
+                        style: TextStyle(color:MyPurple3),
                       ),
                     ),
                   ],

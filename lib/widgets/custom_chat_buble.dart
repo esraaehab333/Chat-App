@@ -1,4 +1,5 @@
-import 'package:chat_app/constants.dart';
+
+import 'package:chat_app/constants/color.dart';
 import 'package:chat_app/models/message.dart';
 import 'package:flutter/material.dart';
 
@@ -18,15 +19,15 @@ class CustomChatBuble extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(25),
-            topLeft: Radius.circular(25),
             topRight: Radius.circular(25),
+            bottomLeft: Radius.circular(25)
           ),
-          color: EnableBorderSideColor,
+          color: MyPurple3,
         ),
         child: Text(
           message.message,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: MyGray,
           ),
         ),
       ),
@@ -51,14 +52,14 @@ class CustomChatBubleForFriend extends StatelessWidget {
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(25),
             topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
+            bottomRight: Radius.circular(25)
           ),
-          color: FoucseBorderSideColor,
+          color: MyBrown1,
         ),
         child: Text(
           message.message,
-          style: const TextStyle(
-            color: Colors.black,
+          style:  TextStyle(
+            color: MyGray,
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chat_app/constants.dart';
+
+import 'package:chat_app/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -15,13 +16,13 @@ class CustomButton extends StatelessWidget {
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: TextColor,
+          color: MyPurple4,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(
           child: Text(
             lable,
-            style: TextStyle(color: WhiteColor),
+            style: TextStyle(color: MyGray),
           ),
         ),
       ),

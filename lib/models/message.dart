@@ -1,4 +1,6 @@
-import 'package:chat_app/constants.dart';
+
+
+import 'package:chat_app/constants/strings.dart';
 
 class Message {
   final String id;

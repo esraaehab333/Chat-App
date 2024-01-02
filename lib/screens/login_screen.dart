@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:chat_app/constants.dart';
+import 'package:chat_app/constants/color.dart';
 import 'package:chat_app/helper/login_user.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 60,
                 ),
                 const Image(
-                  image: AssetImage("assets/images/chat.jpg"),
+                  image: AssetImage("assets/images/Cat astronaut-cuate (2).png"),
                   height: 300,
                 ),
                 const SizedBox(
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         "register",
-                        style: TextStyle(color: EnableBorderSideColor),
+                        style: TextStyle(color: MyPurple3),
                       ),
                     ),
                   ],
@@ -137,4 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+}
+
+class EnableBorderSideColor {
 }
