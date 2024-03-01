@@ -1,4 +1,3 @@
-![chat1](https://github.com/esraaehab333/chat-app/assets/113993788/e5426e8a-8b1e-402a-9f17-43e48173cd17)# chat_app
 
 A new Flutter project.
 
