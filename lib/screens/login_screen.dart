@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+// ignore: must_be_immutable, use_key_in_widget_constructors
 class LoginScreen extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
   String? email;
