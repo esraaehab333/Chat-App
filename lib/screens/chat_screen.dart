@@ -1,4 +1,6 @@
 
+// ignore_for_file: must_be_immutable
+
 import 'package:chat_app/constants/color.dart';
 import 'package:chat_app/constants/strings.dart';
 import 'package:chat_app/models/message.dart';
