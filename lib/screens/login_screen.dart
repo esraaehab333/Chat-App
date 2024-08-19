@@ -2,13 +2,11 @@
 
 import 'package:chat_app/constants/color.dart';
 import 'package:chat_app/cubits/login_cubit/login_cubit.dart';
-import 'package:chat_app/helper/login_user.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/register_screen.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_form_text_filed.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -23,7 +21,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginLoading) {
           isLoading = true;
@@ -35,12 +33,14 @@ class LoginScreen extends StatelessWidget {
                   email: email!,
                 ),
               ));
+              isLoading = false;
         }
         else{
           showSnackBar(context, "some thing want wrong");
+          isLoading = false;
         }
       },
-      child: ModalProgressHUD(
+      builder: (context , state)=> ModalProgressHUD(
         inAsyncCall: isLoading,
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -94,26 +94,7 @@ class LoginScreen extends StatelessWidget {
                     lable: "Login",
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        isLoading = true;
-                        try {
-                          await loginUser(email!, password!);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ChatScreen(email: email!),
-                            ),
-                          );
-                        } on FirebaseAuthException catch (e) {
-                          if (e.code == 'invalid-login-credentials') {
-                            showSnackBar(
-                                context, 'No user found for that email.');
-                          } else if (e.code == 'wrong-password') {
-                            showSnackBar(context,
-                                'Wrong password provided for that user.');
-                          }
-                        } catch (ex) {
-                          showSnackBar(context, "there was an error. ");
-                        }
+                        BlocProvider.of<LoginCubit>(context).loginUser(email: email!, password: password!);
                       } 
                     },
                   ),
@@ -130,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
+                              builder: (context) => RegisterScreen(),
                             ),
                           ),
                         },
